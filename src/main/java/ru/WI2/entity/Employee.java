@@ -4,6 +4,10 @@ import javax.persistence.*;
 
 @NamedQueries({
         @NamedQuery(
+                name = "getAll",
+                query = "FROM Employee"
+        ),
+        @NamedQuery(
                 name = "getEmployeeById",
                 query = "FROM Employee e WHERE e.id = :id"
         )

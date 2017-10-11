@@ -7,6 +7,7 @@ import ru.WI2.service.EmployeeService;
 
 import javax.persistence.NoResultException;
 import java.sql.SQLException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/employee")
@@ -22,6 +23,21 @@ public class EmployeeController {
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     public Employee getEmployeeById(@PathVariable Integer id) throws SQLException, NoResultException {
         return service.getEmployeeById(id, "getEmployeeById");
+    }
+
+    @RequestMapping(value = "/get_/{id}", method = RequestMethod.GET)
+    public Employee getEmployeeById_(@PathVariable Integer id) throws SQLException, NoResultException {
+        return service.getEmployeeById_(id);
+    }
+
+    @RequestMapping(value = "/get", method = RequestMethod.GET)
+    public List<Employee> getAll() throws SQLException, NoResultException {
+        return service.getAll("getAll");
+    }
+
+    @RequestMapping(value = "/get_", method = RequestMethod.GET)
+    public List<Employee> getAll_() throws SQLException, NoResultException {
+        return service.getAll_();
     }
 
 
