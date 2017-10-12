@@ -25,13 +25,17 @@ public class Employee {
     @Column
     private String sname;
 
+    @ManyToOne
+    private Grade grade;
+
     public Employee() {
     }
 
-//    public Employee(int id, String name, String sname) {
+//    public Employee(int id, String name, String sname, Grade grade) {
 //        this.id = id;
 //        this.name = name;
 //        this.sname = sname;
+//        this.grade = grade;
 //    }
 
     public int getId() {
@@ -58,12 +62,21 @@ public class Employee {
         this.sname = sname;
     }
 
+    public Grade getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Grade grade) {
+        this.grade = grade;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", sname='" + sname + '\'' +
+                ", grade=" + grade +
                 '}';
     }
 }
