@@ -3,8 +3,8 @@ package ru.WI2.service;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Service;
-import ru.WI2.dao.EmployeeDAO;
-import ru.WI2.entity.Employee;
+import ru.WI2.dao.GradeDAO;
+import ru.WI2.entity.Grade;
 import ru.WI2.util.SessionUtil;
 
 import javax.persistence.NoResultException;
@@ -15,43 +15,43 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Service
-public class EmployeeService extends SessionUtil implements EmployeeDAO {
+public class GradeService extends SessionUtil implements GradeDAO {
 
-    public Employee getEmployeeById(Integer id, String namedQuerry) throws SQLException, NoResultException {
+    public Grade getGradeById(Integer id, String namedQuerry) throws SQLException, NoResultException {
         openTransactionSession();
         Session session = getSession();
         Query query = session.createNamedQuery(namedQuerry);
         query.setParameter("id", id);
-        Employee employee = (Employee) query.getSingleResult();
+        Grade grade = (Grade) query.getSingleResult();
         closeTransactionSession();
-        return employee;
+        return grade;
     }
 
-    public Employee getEmployeeById_(Integer id) throws SQLException, NoResultException {
+    public Grade getGradeById_(Integer id) throws SQLException, NoResultException {
         openTransactionSession();
         Session session = getSession();
-        Employee employee = (Employee) session.get(Employee.class, id);
+        Grade grade = (Grade) session.get(Grade.class, id);
         closeTransactionSession();
-        return employee;
+        return grade;
     }
 
-    public List<Employee> getAll(String namedQuerry) throws SQLException, NoResultException {
+    public List<Grade> getAll(String namedQuerry) throws SQLException, NoResultException {
         openTransactionSession();
         Session session = getSession();
         Query query = session.createNamedQuery(namedQuerry);
-        List<Employee> list = query.list();
+        List<Grade> list = query.list();
         closeTransactionSession();
         return list;
     }
 
-    public List<Employee> getAll_() throws SQLException, NoResultException {
+    public List<Grade> getAll_() throws SQLException, NoResultException {
         openTransactionSession();
         Session session = getSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Employee> query = builder.createQuery(Employee.class);
-        Root<Employee> employeeRoot = query.from(Employee.class);
+        CriteriaQuery<Grade> query = builder.createQuery(Grade.class);
+        Root<Grade> employeeRoot = query.from(Grade.class);
         query.select(employeeRoot);
-        List<Employee> list = session.createQuery(query).getResultList();
+        List<Grade> list = session.createQuery(query).getResultList();
         closeTransactionSession();
         return list;
     }

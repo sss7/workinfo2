@@ -32,7 +32,7 @@ public class EmployeeController {
 
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     public List<Employee> getAll() throws SQLException, NoResultException {
-        return service.getAll("getAll");
+        return service.getAll("getAllEmployees");
     }
 
     @RequestMapping(value = "/get_", method = RequestMethod.GET)

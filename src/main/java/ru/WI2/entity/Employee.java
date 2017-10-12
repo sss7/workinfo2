@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @NamedQueries({
         @NamedQuery(
-                name = "getAll",
+                name = "getAllEmployees",
                 query = "FROM Employee"
         ),
         @NamedQuery(

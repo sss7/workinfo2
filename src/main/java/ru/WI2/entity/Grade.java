@@ -2,11 +2,21 @@ package ru.WI2.entity;
 
 import javax.persistence.*;
 
+@NamedQueries({
+        @NamedQuery(
+                name = "getAllGrades",
+                query = "FROM Grade "
+        ),
+        @NamedQuery(
+                name = "getGradeById",
+                query = "FROM Grade g WHERE g.id = :id"
+        )
+})
+
 @Entity
 @Table
 public class Grade {
     @Id
-//    @OneToMany
     private int id;
 
     @Column
