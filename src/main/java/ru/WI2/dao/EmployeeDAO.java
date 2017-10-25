@@ -8,11 +8,18 @@ import java.util.List;
 
 public interface EmployeeDAO {
 
-    public Employee getEmployeeById(Integer id, String namedQuerry) throws SQLException, NoResultException;
+    public void create(Employee employee) throws SQLException, NoResultException;
 
-    public Employee getEmployeeById_(Integer id) throws SQLException, NoResultException;
+    public Employee readEmployeeById(Integer id, String namedQuerry) throws SQLException, NoResultException;
 
-    public List<Employee> getAll(String namedQuerry) throws SQLException, NoResultException;
+    public Employee readEmployeeById_(Integer id) throws SQLException, NoResultException;
 
-    public List<Employee> getAll_() throws SQLException, NoResultException;
+    public List<Employee> readAll(String namedQuerry) throws SQLException, NoResultException;
+
+    public List<Employee> readAll_() throws SQLException, NoResultException;
+
+    public void update(Employee employee) throws SQLException, NoResultException;
+
+    public void delete(Integer id) throws SQLException, NoResultException;
+
 }

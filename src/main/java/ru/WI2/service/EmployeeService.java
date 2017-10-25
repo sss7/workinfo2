@@ -17,7 +17,16 @@ import java.util.List;
 @Service
 public class EmployeeService extends SessionUtil implements EmployeeDAO {
 
-    public Employee getEmployeeById(Integer id, String namedQuerry) throws SQLException, NoResultException {
+    // CREATE
+    public void create(Employee employee) throws SQLException, NoResultException {
+        openTransactionSession();
+        Session session = getSession();
+        session.save("Employee", employee);
+        closeTransactionSession();
+    }
+
+    // READ
+    public Employee readEmployeeById(Integer id, String namedQuerry) throws SQLException, NoResultException {
         openTransactionSession();
         Session session = getSession();
         Query query = session.createNamedQuery(namedQuerry);
@@ -27,7 +36,7 @@ public class EmployeeService extends SessionUtil implements EmployeeDAO {
         return employee;
     }
 
-    public Employee getEmployeeById_(Integer id) throws SQLException, NoResultException {
+    public Employee readEmployeeById_(Integer id) throws SQLException, NoResultException {
         openTransactionSession();
         Session session = getSession();
         Employee employee = (Employee) session.get(Employee.class, id);
@@ -35,7 +44,7 @@ public class EmployeeService extends SessionUtil implements EmployeeDAO {
         return employee;
     }
 
-    public List<Employee> getAll(String namedQuerry) throws SQLException, NoResultException {
+    public List<Employee> readAll(String namedQuerry) throws SQLException, NoResultException {
         openTransactionSession();
         Session session = getSession();
         Query query = session.createNamedQuery(namedQuerry);
@@ -44,7 +53,7 @@ public class EmployeeService extends SessionUtil implements EmployeeDAO {
         return list;
     }
 
-    public List<Employee> getAll_() throws SQLException, NoResultException {
+    public List<Employee> readAll_() throws SQLException, NoResultException {
         openTransactionSession();
         Session session = getSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -55,5 +64,24 @@ public class EmployeeService extends SessionUtil implements EmployeeDAO {
         closeTransactionSession();
         return list;
     }
+
+    // UPDATE
+    public void update(Employee employee) throws SQLException, NoResultException {
+        openTransactionSession();
+        Session session = getSession();
+        session.update(employee);
+        closeTransactionSession();
+    }
+
+    // DELETE
+    public void delete(Integer id) throws SQLException, NoResultException {
+        Employee employee = readEmployeeById_(id);
+        openTransactionSession();
+        Session session = getSession();
+        session.remove(employee);
+        closeTransactionSession();
+    }
+
+
 
 }

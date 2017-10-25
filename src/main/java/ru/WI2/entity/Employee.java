@@ -4,11 +4,11 @@ import javax.persistence.*;
 
 @NamedQueries({
         @NamedQuery(
-                name = "getAllEmployees",
+                name = "readAllEmployees",
                 query = "FROM Employee"
         ),
         @NamedQuery(
-                name = "getEmployeeById",
+                name = "readEmployeeById",
                 query = "FROM Employee e WHERE e.id = :id"
         )
 })
@@ -17,6 +17,8 @@ import javax.persistence.*;
 @Table
 public class Employee {
     @Id
+//    @JsonIgnore
+//    @JsonProperty("id")
     private int id;
 
     @Column
@@ -28,14 +30,18 @@ public class Employee {
     @ManyToOne
     private Grade grade;
 
+    @ManyToOne //@OneToOne
+    private Certificate certificate;
+
     public Employee() {
     }
 
-//    public Employee(int id, String name, String sname, Grade grade) {
+//    public Employee(int id, String name, String sname, Grade grade, Certificate certificate) {
 //        this.id = id;
 //        this.name = name;
 //        this.sname = sname;
 //        this.grade = grade;
+//        this.certificate = certificate;
 //    }
 
     public int getId() {
@@ -70,6 +76,14 @@ public class Employee {
         this.grade = grade;
     }
 
+    public Certificate getCertificate() {
+        return certificate;
+    }
+
+    public void setCertificate(Certificate certificate) {
+        this.certificate = certificate;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -77,6 +91,7 @@ public class Employee {
                 ", name='" + name + '\'' +
                 ", sname='" + sname + '\'' +
                 ", grade=" + grade +
+                ", certificate=" + certificate +
                 '}';
     }
 }
